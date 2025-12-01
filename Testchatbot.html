@@ -5,8 +5,8 @@
   <title>Chatbot Test</title>
   <style>
     body {
-      background-color: #040506;   /* jouw achtergrondkleur */
-      color: #e6e6e6;             /* text kleur indien nodig */
+      /* background-color: #040506; */   /* jouw achtergrondkleur (optioneel) */
+      /* color: #e6e6e6; */              /* tekstkleur (optioneel) */
       font-family: Arial, sans-serif;
       font-weight: bold;                /* "Fatty" tekst */
     }
@@ -14,42 +14,125 @@
     h1, p {
       font-weight: bold;
     }
-  </style>
-</head>
-<body>
 
-  <h1>Testpagina</h1>
-  <p>Hier test je de chatbot</p>
-
-  <!-- ✔ Chatbot in wrapper met gegarandeerd ronde hoeken -->
-  <div style="
+    /* Chatbot container met ronde hoeken */
+    .chatbot-wrapper {
       position: fixed;
-      bottom: 20px;
+      bottom: 80px;              /* iets boven de knop */
       right: 20px;
       width: 400px;
       height: 600px;
       border-radius: 12px;
-      overflow: hidden;                /* Cruciaal: clipt de iframe */
+      overflow: hidden;          /* hoeken echt afronden */
       box-shadow: 0 4px 20px rgba(0,0,0,0.35);
       z-index: 9999;
-      background-color: inherit;       /* Matching BG ( voorkomt clipping bugs ) */
-  ">
-      <iframe
-        src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4"
-        width="100%"
-        height="100%"
-        style="border: none;">
-      </iframe>
+      background-color: #040506; /* voorkomt rare randen bij donkere BG */
+
+      /* start: verborgen (ingeklapt) */
+      transform: translateY(100%);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    /* Als 'open' → toon chatbot */
+    .chatbot-wrapper.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .chatbot-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Toggle button rechtsonder */
+    .chatbot-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      background: #c9952e;
+      color: #000;
+      font-size: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+      z-index: 10000;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .chatbot-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+
+    .chatbot-toggle:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <h1>Testpagina</h1>
+  <p>Hier test je de chatbot</p>
+
+  <!-- Chatbot wrapper met afgeronde hoeken -->
+  <div id="chatbot-wrapper" class="chatbot-wrapper">
+    <iframe
+      src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4">
+    </iframe>
   </div>
 
+  <!-- Toggle knop -->
+  <button
+    id="chatbot-toggle"
+    class="chatbot-toggle"
+    type="button"
+    aria-label="Open de chat"
+    aria-expanded="false">
+    💬
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const wrapper = document.getElementById('chatbot-wrapper');
+      const toggle = document.getElementById('chatbot-toggle');
+
+      let isOpen = false;
+
+      function updateState() {
+        if (isOpen) {
+          wrapper.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        } else {
+          wrapper.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+
+      toggle.addEventListener('click', function () {
+        isOpen = !isOpen;
+        updateState();
+      });
+
+      // start dicht
+      updateState();
+    });
+  </script>
+
+  <!-- Chat window embed snippet (optioneel, kan blijven staan) -->
+  <script 
+    id="intragpt-bot" 
+    src="https://intragpt.svenkrameracademy.nl/intragpt-chatwindow.js"
+    data-bot-id="8be746e2-152f-485a-a0f1-a147e88434e4">
+  </script>
 </body>
-
-<!-- Chat window embed snippet -->
-<script 
-  id="intragpt-bot"
-  src="https://intragpt.svenkrameracademy.nl/intragpt-chatwindow.js"
-  data-bot-id="8be746e2-152f-485a-a0f1-a147e88434e4">
-</script>
-
 </html>
-
