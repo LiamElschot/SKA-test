@@ -239,26 +239,6 @@
         font-size: 38px;
       }
     }
-
-    /* ------------------------------------------------------
-        FIX: Chatbot iframe volledig afgeronde hoeken
-       ------------------------------------------------------ */
-    .chatbot-wrapper {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 400px;
-      height: 600px;
-      border-radius: 12px;
-      overflow: hidden;
-      z-index: 999;
-    }
-
-    .chatbot-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
   </style>
 </head>
 <body>
@@ -270,9 +250,12 @@
     </div>
 
     
-      <iframe
-        src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4">
-      </iframe>
+    <iframe
+      src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4"
+      width="100%"
+      height="100%"
+      style="border: none; border-radius: 12px;">
+    </iframe>
 
     <nav>
       <ul class="nav-primary">
@@ -331,4 +314,5 @@
 
 </body>
 </html>
+
 
