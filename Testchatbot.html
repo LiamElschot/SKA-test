@@ -5,30 +5,43 @@
   <title>Chatbot Test</title>
   <style>
     body {
-      background-color: #040506; /* Extracted from image */
-      color: #e6e6e6; /* Soft white/gray for better contrast */
+      background-color: #040506; /* Extracted from your image */
+      color: #e6e6e6;            /* Soft white for readability */
       font-family: Arial, sans-serif;
-      font-weight: bold; /* Makes all body text bold */
+      font-weight: bold;         /* "Fatty" text */
     }
     h1, p {
-      font-weight: bold; /* Extra guarantee text is bold */
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <h1>Testpagina</h1>
   <p>Hier test je de chatbot</p>
-  <!-- Volledige chatbot in een iframe -->
-  <iframe
-    src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4"
-    width="400"
-    height="600"
-    style="border: none; border-radius: 12px; position: fixed; bottom: 20px; right: 20px;">
-  </iframe>
+  <!-- Chatbot wrapper with rounded corners -->
+  <div style="
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 400px;
+      height: 600px;
+      border-radius: 12px;
+      overflow: hidden;                /* Ensures rounded corners always work */
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35); /* Optional but looks cleaner */
+      z-index: 9999;
+  ">
+      <iframe
+        src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4"
+        width="100%"
+        height="100%"
+        style="border: none;">
+      </iframe>
+  </div>
 </body>
-<!-- Chat window embed snippet -->
+<!-- Chat window embed snippet (you can keep or remove) -->
 <script 
-  id="intragpt-bot" src="https://intragpt.svenkrameracademy.nl/intragpt-chatwindow.js"
+  id="intragpt-bot" 
+  src="https://intragpt.svenkrameracademy.nl/intragpt-chatwindow.js"
   data-bot-id="8be746e2-152f-485a-a0f1-a147e88434e4">
 </script>
 </html>
