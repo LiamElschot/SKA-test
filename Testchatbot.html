@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Chatbot Test</title>
+  <style>
+    body {
+      background-color: #040506; /* Extracted from image */
+      color: #e6e6e6; /* Soft white/gray for better contrast */
+      font-family: Arial, sans-serif;
+      font-weight: bold; /* Makes all body text bold */
+    }
+    h1, p {
+      font-weight: bold; /* Extra guarantee text is bold */
+    }
+  </style>
 </head>
 <body>
   <h1>Testpagina</h1>
   <p>Hier test je de chatbot</p>
-  
   <!-- Volledige chatbot in een iframe -->
   <iframe
     src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4"
@@ -15,13 +25,10 @@
     height="600"
     style="border: none; border-radius: 12px; position: fixed; bottom: 20px; right: 20px;">
   </iframe>
-
 </body>
-
-  <!-- Chat window embed snippet -->
+<!-- Chat window embed snippet -->
 <script 
   id="intragpt-bot" src="https://intragpt.svenkrameracademy.nl/intragpt-chatwindow.js"
-data-bot-id="8be746e2-152f-485a-a0f1-a147e88434e4">
+  data-bot-id="8be746e2-152f-485a-a0f1-a147e88434e4">
 </script>
-  
 </html>
