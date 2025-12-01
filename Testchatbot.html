@@ -1,30 +1,314 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
-  <title>Chatbot Test</title>
+  <title>Sven Kramer Academy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #050505;
+      color: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 60px;
+      background-color: #050505;
+      z-index: 100;
+    }
+
+    .logo-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .nav-primary li {
+      cursor: pointer;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn-gold,
+    .btn-cart {
+      border: none;
+      cursor: pointer;
+      padding: 10px 22px;
+      border-radius: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .btn-gold {
+      background-color: #c9952e;
+      color: #000;
+    }
+
+    .btn-cart {
+      background-color: #c9952e;
+      color: #000;
+      width: 40px;
+      text-align: center;
+    }
+
+    main {
+      margin-top: 80px; /* ruimte voor fixed header */
+    }
+
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      padding: 80px 60px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("hero-background.jpg") center/cover no-repeat;
+      opacity: 0.3;
+      z-index: -2;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.6) 40%,
+        rgba(0, 0, 0, 0.2) 70%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 45%;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #d9a74b;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .hero-title {
+      font-size: 56px;
+      line-height: 1.05;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-text {
+      font-size: 15px;
+      line-height: 1.5;
+      max-width: 420px;
+      margin-bottom: 40px;
+      color: #e6e6e6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn-outline {
+      border-radius: 4px;
+      border: 1px solid #ffffff;
+      background: transparent;
+      color: #ffffff;
+      padding: 12px 26px;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .hero-image-wrapper {
+      margin-left: auto;
+      max-width: 40%;
+      position: relative;
+    }
+
+    .hero-image-inner {
+      background: #ffffff;
+      padding: 15px;
+      clip-path: polygon(12% 0, 100% 8%, 88% 100%, 0 92%);
+    }
+
+    .hero-image-inner img {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: -60px;
+      left: 10%;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid #c9952e;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 960px) {
+      header {
+        padding: 0 20px;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 60px 20px 40px;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .hero-image-wrapper {
+        display: none;
+      }
+
+      .hero-title {
+        font-size: 38px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Testpagina</h1>
-  <p>Hier test je de chatbot</p>
-  
-  <!-- Volledige chatbot in een iframe -->
-  <iframe
+  <header>
+    <div class="logo-group">
+      <div class="logo">SKA</div>
+      <div class="logo">UNOX</div>
+    </div>
+    <iframe
     src="https://intragpt.svenkrameracademy.nl/chatbot/embed/8be746e2-152f-485a-a0f1-a147e88434e4"
     width="400"
     height="600"
     style="border: none; border-radius: 12px; position: fixed; bottom: 20px; right: 20px;">
-  </iframe>
+    </iframe>
+    <nav>
+      <ul class="nav-primary">
+        <li><a href="#">Locaties</a></li>
+        <li><a href="#">Schaatslessen</a></li>
+        <li><a href="#">Nieuws</a></li>
+        <li><a href="#">Over de SKA</a></li>
+        <li><a href="#">Werken bij</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
 
+    <div class="nav-cta">
+      <button class="btn-gold">Boek je les</button>
+      <button class="btn-cart">🛒</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <p class="hero-subtitle">Welkom bij de Sven Kramer Academy</p>
+        <h1 class="hero-title">
+          <span>Schaatsplezier</span>
+          <span>voor jong &amp;</span>
+          <span>oud</span>
+        </h1>
+        <p class="hero-text">
+          Schaatslessen, schoolschaatsen, SKA Cup, skeelerlessen, zomeractiviteiten en meer!
+        </p>
+        <div class="hero-buttons">
+          <button class="btn-gold">Kies jouw locatie</button>
+          <button class="btn-outline">Ga naar ons schaatsaanbod</button>
+        </div>
+      </div>
+
+      <div class="hero-image-wrapper">
+        <div class="hero-image-inner">
+          <!-- Vervang dit door de echte afbeelding -->
+          <img src="sven-kramer-academy-hero.jpg" alt="Sven Kramer Academy - Schaatsles">
+        </div>
+        <div class="hero-badge">
+          Ontdek hoe leuk schaatsen is
+        </div>
+      </div>
+    </section>
+  </main>
 </body>
-
   <!-- Chat window embed snippet -->
 <script 
   id="intragpt-bot" src="https://intragpt.svenkrameracademy.nl/intragpt-chatwindow.js"
 data-bot-id="8be746e2-152f-485a-a0f1-a147e88434e4">
 </script>
-  
 </html>
+
 
 
 
